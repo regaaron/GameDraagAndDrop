@@ -23,19 +23,17 @@ function empezar(){
     
 
     if(!(existe())){
-      
+      alert("Usuario no existe")
         alta();
         var user=JSON.parse(users[users.length-1]);
         document.getElementById("user-name").innerHTML += user.userName;
         document.getElementById("user-score").innerHTML += user.userScore;
     }else{
-      
-
+        alert("Usuario  existe en el indice:" + indice)
     var user=JSON.parse(users[indice]);
     document.getElementById("user-name").innerHTML += user.userName;
     document.getElementById("user-score").innerHTML += user.userScore;
     }
-
 
 }
 function existe(){
@@ -67,8 +65,7 @@ function alta(){
 
 function adios(){
     document.getElementById("container-buttons").style.display = "none";
-    var adios=document.getElementById("adios");
-    adios.innerHTML=`<h2 class="adios">Adios querido amigo</h2>`;
+    var adios=document.getElementById("creditos").style.display = "flex";
 }
 
 function mute() {
@@ -89,6 +86,8 @@ function mute() {
     miAudio.muted = !miAudio.muted;
     
 }
+
+
 
 
 window.onload = function(){
