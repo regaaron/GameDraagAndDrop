@@ -11,18 +11,23 @@
 <body >
 
   <div class="video-container">
-    <video id="video'background" autoplay muted loop>
-      <source src="space2.mp4" type="video/mp4">
+    <video id="video-background" autoplay muted loop>
+      <source src="fondo.mp4" type="video/mp4">
     </video>
   </div>
 
   <div class="content">
 
     
-    <audio id="audio" autoplay loop>
-      <source src="fondo.mp3" >
+    <audio id="audio" autoplay loop >
+      <source src="audio.mp3" >
     </audio>
     <section id="container-buttons">
+      <button class="button2" class="btn" id="btn-start" type="button" onclick="starGame();">
+        Start Game
+      </button>
+
+<!--       
       <button class="btn" id="btn-start" type="button" onclick="starGame();">
             <strong>STAR GAME</strong>
             <div id="container-stars">
@@ -33,9 +38,12 @@
               <div class="circle"></div>
               <div class="circle"></div>
             </div>
+          </button> -->
+          <button class="button2" id="btn-config" type="button">
+            CONFIG
           </button>
-          
-          <button class="btn" id="btn-config" type="button" >
+
+          <!-- <button class="btn" id="btn-config" type="button" >
             <strong>CONFIG</strong>
             <div id="container-stars">
               <div id="stars"></div>
@@ -45,9 +53,14 @@
               <div class="circle"></div>
               <div class="circle"></div>
             </div>
-          </button>
+          </button> -->
           
-          <button class="btn" id="button-exit" type="button" onclick="adios();">
+          <button class="button2" id="button-exit" type="button" onclick="adios();">
+            Creditos
+          </button>
+
+
+          <!-- <button class="btn" id="button-exit" type="button" onclick="adios();">
             <strong>Creditos</strong>
             <div id="container-stars">
               <div id="stars"></div>
@@ -57,10 +70,12 @@
               <div class="circle"></div>
               <div class="circle"></div>
             </div>
+          </button> -->
+          
+          <button class="button2" id="button-exit" type="button" onclick="mute();">
+            <strong><i class="fa-solid fa-volume-high volumen" id="logo-mute"></i></strong>
           </button>
-          
-          
-          <button class="btn btn2" id="button-exit" type="button" onclick="mute();">
+          <!-- <button class="btn btn2" id="button-exit" type="button" onclick="mute();">
             <strong><i class="fa-solid fa-volume-high volumen" id="logo-mute"></i></strong>
             <div id="container-stars">
               <div id="stars"></div>
@@ -70,7 +85,7 @@
               <div class="circle"></div>
               <div class="circle"></div>
             </div>
-          </button>
+          </button> -->
           
     </section>
 
@@ -94,12 +109,15 @@
     
     <section >
       <form class="formulario" id="formulario" onsubmit="return false;">
-        <label for="name">
+        <label for="name" class="label-name">
           Ingresa tu nombre
           <input type="text" placeholder="Nombre" id="name" onkeydown="if(event.key === 'Enter') empezar()">
         </label>
+        <button class="button2" id="button-exit" type="button" onclick="empezar();">
+          Empezar
+        </button>
         
-        <button class="btn" id="button-exit" type="button" onclick="empezar();">
+        <!-- <button class="btn" id="button-exit" type="button" onclick="empezar();">
           <strong>Empezar</strong>
           <div id="container-stars">
             <div id="stars"></div>
@@ -109,27 +127,21 @@
             <div class="circle"></div>
             <div class="circle"></div>
           </div>
-        </button>
+        </button> -->
       </form>
     </section>
     
     
     
     <main id="canvas-container">
-      <div>
-        <button class="btn btn2" id="button-exit" type="button" onclick="mute();">
-          <strong><i class="fa-solid fa-volume-high volumen" id="logo-mute"></i></strong>
-          <div id="container-stars">
-            <div id="stars"></div>
-          </div>
-          
-          <div id="glow">
-            <div class="circle"></div>
-            <div class="circle"></div>
-          </div>
-        </button>
+
+      <div class="menu-canvas">
+        <h2 id="user-name">Bienvenido </h2>
+        <h2 id="user-score">Score:</h2>
       </div>
+
       <canvas id="gameCanvas" width="800" height="400" ></canvas>
+
     </main> 
     
     <script src="main.js"></script>

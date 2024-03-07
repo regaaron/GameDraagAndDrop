@@ -1,3 +1,9 @@
+var users=localStorage.getItem('users');
+users=JSON.parse(users);
+if(users==null) users=[];
+var indice;
+
+
 function startGame(){
     document.getElementById("container-buttons").style.display = "none";
     // document.getElementById("gameCanvas").style.display = "block";
@@ -14,6 +20,47 @@ function empezar(){
     formulario.style.display = "none";
     document.getElementById("canvas-container").style.display = "flex";
 
+    if(!(existe())){
+        alert("Usuario no existe");
+        alta();
+        var user=JSON.parse(users[users.length-1]);
+        document.getElementById("user-name").innerHTML += user.userName;
+        document.getElementById("user-score").innerHTML += user.userScore;
+    }else{
+        alert("Usuario existe"+indice);
+    var user=JSON.parse(users[indice]);
+    document.getElementById("user-name").innerHTML += user.userName;
+    document.getElementById("user-score").innerHTML += user.userScore;
+    }
+   
+
+
+}
+function existe(){
+    var userName=document.getElementById('name').value;
+    var user = JSON.stringify({
+        userName:userName,
+        userScore:0
+    });
+    for(var i in users){
+        var user=JSON.parse(users[i]);
+        if(user.userName==userName){
+            indice=i;
+            return true;
+        }
+    }
+    return false;
+
+}
+function alta(){
+    var userName=document.getElementById('name').value;
+    var userScore=0;
+    var user = JSON.stringify({
+        userName:userName,
+        userScore:userScore
+    });
+    users.push(user);
+    localStorage.setItem("users",JSON.stringify(users));
 }
 
 function adios(){
@@ -23,8 +70,8 @@ function adios(){
 }
 
 function mute() {
-    const miAudio = document.getElementById("audio");
     const logosMute = document.getElementsByClassName("volumen");
+    const miAudio = document.getElementById("audio");
 
     for(const logo of logosMute){
 
@@ -47,4 +94,7 @@ window.onload = function(){
     document.getElementById("canvas-container").style.display="none";
     var btnStart = document.getElementById("btn-start");
     btnStart.addEventListener("click", startGame, false);
+    const miAudio = document.getElementById("audio");
+    miAudio.volume = 0.06;
+    
 }
