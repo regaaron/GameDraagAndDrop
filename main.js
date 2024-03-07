@@ -12,27 +12,29 @@ function startGame(){
     formulario.style.flexDirection = "column";
     formulario.style.justifyContent = "center";
     formulario.style.alignItems = "center";
-    
 
+    
 }
 
 function empezar(){
     formulario.style.display = "none";
+
     document.getElementById("canvas-container").style.display = "flex";
+    
 
     if(!(existe())){
-        alert("Usuario no existe");
+      
         alta();
         var user=JSON.parse(users[users.length-1]);
         document.getElementById("user-name").innerHTML += user.userName;
         document.getElementById("user-score").innerHTML += user.userScore;
     }else{
-        alert("Usuario existe"+indice);
+      
+
     var user=JSON.parse(users[indice]);
     document.getElementById("user-name").innerHTML += user.userName;
     document.getElementById("user-score").innerHTML += user.userScore;
     }
-   
 
 
 }
