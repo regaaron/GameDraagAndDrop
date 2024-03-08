@@ -6,9 +6,11 @@
     <title>Proyecto 1</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <script src="https://kit.fontawesome.com/673553f744.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   
+<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script> 
 </head>
 <body >
 
@@ -24,7 +26,7 @@
     <audio id="audio" autoplay loop >
       <source src="audio.mp3" >
     </audio>
-    <section id="container-buttons">
+    <section id="container-buttons" class="animate__animated animate__bounceInDown">
           <button class="button2" id="btn-start" type="button" onclick="startGame();">
             Start Game
           </button>
@@ -45,7 +47,7 @@
           
     </section>
 
-    <section id="creditos">
+    <section id="creditos" class="animate__animated animate__zoomInUp">
 
       <div class="back">
         <a href="" class="button2 "><i class="fa-solid fa-arrow-left"></i></a>  
@@ -106,17 +108,39 @@
     
     
     <section >
-      <form class="formulario" id="formulario" onsubmit="return false;">
-        <label for="name" class="label-name">
+      <form class="formulario " id="formulario" onsubmit="return false;">
+        <label for="name" class="label-name animate__animated animate__fadeInLeft">
           Ingresa tu nombre
-          <input type="text" placeholder="Nombre" id="name" onkeydown="if(event.key === 'Enter') empezar()">
+          <input type="text" placeholder="Nombre" id="name" class="animate__animated animate__fadeInRightBig">
         </label>
-        <button class="button2" id="button-exit" type="button" onclick="empezar();">
+        <button class="button2 animate__animated animate__fadeInUpBig" id="button-exit" type="submit" onclick="empezar();"  data-bs-toggle="modal" data-bs-target="#exampleModal">
           Empezar
         </button>
-        
-     
       </form>
+
+       <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <p id="modal-p"></p>
+              </div>
+              <div class="modal-footer">
+                 
+                  <button type="submit"  class="btn btn-success" data-bs-dismiss="modal">ok</button>
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+    
+
+
     </section>
     
     
@@ -124,8 +148,9 @@
     <main id="canvas-container">
 
       <div class="menu-canvas">
-        <h2 id="user-name">Bienvenido </h2>
-        <h2 id="user-score">Score:</h2>
+        <h2 id="user-name"></h2>
+        <h2 id="user-score"></h2>
+        <a href="" class="button2 ">salir</a>
       </div>
 
       <canvas id="gameCanvas" width="800" height="400" ></canvas>

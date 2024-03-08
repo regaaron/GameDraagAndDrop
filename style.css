@@ -58,7 +58,9 @@ button{
 }
 canvas{
     border: 1px solid ;
+   
 }
+
 
   section{
     display: flex;
@@ -93,8 +95,8 @@ canvas{
 
   .formulario input{
     width: 300px;
-    height: 40px;
-    font-size: 20px;
+    height: 60px;
+    font-size: 32px;
     text-align: center;
     margin: 20px;
     border-radius: 20px;
@@ -114,10 +116,11 @@ canvas{
 
 
   #canvas-container{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 50px;
   }
   
   
@@ -126,14 +129,16 @@ canvas{
     align-items: center;
     justify-content: space-around;
     
-    color: #fbca1f;
-    font-size: 22px;
-    font-weight: 300;
+    color: #EE7C18;
 
   }
 
   .menu-canvas h2{
     margin: 0 20px;
+    /* color: #000; */
+    font-family: fantasy;
+    font-weight: 400;
+    font-size: 44px;
   }
 
 #creditos{
