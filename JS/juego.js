@@ -85,7 +85,8 @@ function obtenerAleatorios(arr, cantidad) {
 
 
   function obtenerValorAleatorioNoRepetitivo() {
-    var valoresX = [50, 350, 600];
+    const valoresX = [100, 500 , 900];
+
 
     // Mezclar el arreglo de opciones de manera aleatoria
     var opcionesMezcladas = valoresX.sort(function () {
@@ -94,13 +95,14 @@ function obtenerAleatorios(arr, cantidad) {
   
     // Obtener los primeros 3 elementos del arreglo mezclado
     var valoresAleatorios = opcionesMezcladas.slice(0, 3);
-    animales[0].animalX=valoresAleatorios[0];
-    animales[1].animalX=valoresAleatorios[1];
-    animales[2].animalX=valoresAleatorios[2];
+    animales[0].animalX=valoresAleatorios[0] + 27;
+    animales[1].animalX=valoresAleatorios[1] + 27;
+    animales[2].animalX=valoresAleatorios[2] + 27;
 
     var opcionesMezcladas2 = valoresX.sort(function () {
         return Math.random() - 0.5;
       });
+      
     var valoresAleatorios2 = opcionesMezcladas2.slice(0, 3);
     animales[0].casaX=valoresAleatorios2[0];
     animales[1].casaX=valoresAleatorios2[1];
@@ -126,6 +128,7 @@ window.onload = function () {
   document.getElementById("user-name").innerHTML = `Bienvenido ${user.userName}`;
   document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
 
+  
   // Divide el ancho del canvas en tres partes iguales
   const widthThird = canvas.width / 3;
 
@@ -134,18 +137,10 @@ window.onload = function () {
   const casaX2 = widthThird;
   const casaX3 = widthThird * 2;
 
+
   // Genera las opciones de animales
   animales = obtenerAleatorios(opciones, 3);
-
-  // Asigna las coordenadas X de las casas y los animales
-  animales[0].casaX = casaX1 + 50;
-  animales[1].casaX = casaX2 + 50;
-  animales[2].casaX = casaX3 + 50;
-
-  animales[0].animalX = casaX1 + 80; // Ajusta el valor según tus necesidades
-  animales[1].animalX = casaX2 + 80; // Ajusta el valor según tus necesidades
-  animales[2].animalX = casaX3 + 80; // Ajusta el valor según tus necesidades
-
+  obtenerValorAleatorioNoRepetitivo();
   cargarImagenes();
 
   // eventos del canvas de mouse disparadores cuando ocurren hacen la funcion
@@ -157,7 +152,6 @@ window.onload = function () {
 
 
   function cargarImagenes() {
-
     imagesLoaded = 0;
     totalImages = 6;
   for (let animal of animales) {
