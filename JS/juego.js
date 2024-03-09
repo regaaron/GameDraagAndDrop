@@ -58,7 +58,7 @@ class Animal {
     new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png"),
     new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png"),
     new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png"),
-    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/Osopolar.png"),
+    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png"),
     new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png"),
     new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png"),
     new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png"),
