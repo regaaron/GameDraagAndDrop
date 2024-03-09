@@ -204,8 +204,8 @@ function alta() {
 }
 
 
-let imagesLoaded = 0;
-let totalImages = animales.length * 2; // Cada animal tiene dos imágenes
+imagesLoaded = 0;
+totalImages = animales.length * 2; // Cada animal tiene dos imágenes
 // funcion que oculta los botones del inicio y muestra los creditos
 function adios() {
   document.getElementById("container-buttons").style.display = "none";
