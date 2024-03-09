@@ -53,15 +53,15 @@ class Animal {
 }
 
 let opciones = [
-  new Animal(0, 250, "./mono.png", 0, 25, "./arbol.png"),
-  new Animal(0, 250, "./shark.jpg", 0, 25, "./mar.jpg"),
-  new Animal(0, 250, "./shark.jpg", 0, 25, "./aaron.jpg"),
-  new Animal(0, 250, "./shark.jpg", 0, 25, "./alan.jpg"),
-  new Animal(0, 250, "./shark.jpg", 0, 25, "./omar.jpg"),
-  new Animal(0, 250, "./mono.png", 0, 25, "./aaron.jpg"),
-  new Animal(0, 250, "./mono.png", 0, 25, "./alan.jpg"),
-  new Animal(0, 250, "./mono.png", 0, 25, "./mar.jpg"),
-  new Animal(0, 250, "./mono.png", 0, 25, "./omar.jpg"),
+  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/arbol.png"),
+  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/mar.jpg"),
+  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/aaron.jpg"),
+  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/alan.jpg"),
+  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/omar.jpg"),
+  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/aaron.jpg"),
+  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/alan.jpg"),
+  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/mar.jpg"),
+  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/omar.jpg"),
 ];
 
 var animales;
@@ -205,7 +205,6 @@ function alta() {
 
 
 imagesLoaded = 0;
-totalImages = animales.length * 2; // Cada animal tiene dos imágenes
 // funcion que oculta los botones del inicio y muestra los creditos
 function adios() {
   document.getElementById("container-buttons").style.display = "none";
