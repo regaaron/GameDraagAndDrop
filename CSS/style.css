@@ -112,8 +112,19 @@ canvas{
     scale: 1.1;
   }
 
-  #container-buttons,#formulario{
+  #container-buttons{
+    margin-top: 20px;
+  }
+  #formulario{
     margin-top: 100px;
+  }
+
+  .nameJuego{
+    font-size: 42px;
+    font-family: fantasy;
+    color: #EE7C18;
+    font-weight: 600;
+    text-shadow: 12px 12px 18px rgba(0, 0, 0, 0.7);
   }
 
 
