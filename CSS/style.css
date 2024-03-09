@@ -79,7 +79,10 @@ canvas{
   }
 
   .formulario{
-    display: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
    
   }
 
@@ -116,7 +119,7 @@ canvas{
 
 
   #canvas-container{
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -142,7 +145,7 @@ canvas{
   }
 
 #creditos{
-  display: none;
+  display: flex;
 }
 .container-cards{
 

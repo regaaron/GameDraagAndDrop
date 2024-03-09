@@ -1,10 +1,13 @@
 var users = localStorage.getItem("users");
 users = JSON.parse(users);
 if (users == null) users = [];
-var indice;
+var indice = localStorage.getItem("indice");
+indice = JSON.parse(indice);
 
-var canvas = document.getElementById("gameCanvas");
-var lapiz = canvas.getContext("2d");
+
+const user = JSON.parse(users[indice]);
+var canvas ;
+var lapiz ;
 
 var startX;
 var startY;
@@ -22,67 +25,48 @@ let imagesLoaded = 0;
 let totalImages = 0
 
 class Animal {
-  constructor(animalX, animalY, animalImage, casaX, casaY, casaImage) {
-    this.animalX = animalX;
-    this.animalY = animalY;
-    this.animalImage = animalImage;
-    this.casaX = casaX;
-    this.casaY = casaY;
-    this.casaImage = casaImage;
-  }
-
-  Info() {
-    console.log(
-      "Animal en x: " +
-        this.animalX +
-        " y: " +
-        this.animalY +
-        " animalImage: " +
-        this.animalImage +
-        " Casa en x: " +
-        this.casaX +
-        " y: " +
-        this.casaY +
-        " casaimage: " +
-        this.casaImage
-    );
-  }
-}
-
-let opciones = [
-  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/arbol.png"),
-  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/mar.jpg"),
-  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/aaron.jpg"),
-  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/alan.jpg"),
-  new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/omar.jpg"),
-  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/aaron.jpg"),
-  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/alan.jpg"),
-  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/mar.jpg"),
-  new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/omar.jpg"),
-];
-
-var animales;
-
-window.onload = function () {
-  // document.getElementById("canvas-container").style.display = "none";
+    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage) {
+      this.animalX = animalX;
+      this.animalY = animalY;
+      this.animalImage = animalImage;
+      this.casaX = casaX;
+      this.casaY = casaY;
+      this.casaImage = casaImage;
+    }
   
-  // var btnStart = document.getElementById("btn-start");
-  // btnStart.addEventListener("click", startGame, false);
-  const miAudio = document.getElementById("audio");
-  miAudio.volume = 0.4;
+    Info() {
+      console.log(
+        "Animal en x: " +
+          this.animalX +
+          " y: " +
+          this.animalY +
+          " animalImage: " +
+          this.animalImage +
+          " Casa en x: " +
+          this.casaX +
+          " y: " +
+          this.casaY +
+          " casaimage: " +
+          this.casaImage
+      );
+    }
+  }
   
-};
+  let opciones = [
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/arbol.png"),
+    new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/mar.jpg"),
+    new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/aaron.jpg"),
+    new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/alan.jpg"),
+    new Animal(0, 250, "./Imagenes/shark.jpg", 0, 25, "./Imagenes/omar.jpg"),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/aaron.jpg"),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/alan.jpg"),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/mar.jpg"),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/omar.jpg"),
+  ];
+  
+  var animales;
 
-// oculta los botones del inicio y desoculta el form donde pones el nombre
-function startGame() {
-  document.getElementById("container-buttons").style.display = "none";
-  var formulario = document.getElementById("formulario");
-  formulario.style.display = "flex";
-  formulario.style.flexDirection = "column";
-  formulario.style.justifyContent = "center";
-  formulario.style.alignItems = "center";
-}
-
+  
 function obtenerAleatorios(arr, cantidad) {
     // Copia el array para no modificar el original
     const opcionesCopia = arr.slice();
@@ -120,115 +104,46 @@ function obtenerAleatorios(arr, cantidad) {
     animales[1].casaX=valoresAleatorios2[1];
     animales[2].casaX=valoresAleatorios2[2];
   }
+
   
-
-// oculta el form y desoculta el canvas y el modal tambien checa si el usuario ya existe o es nuevo
-function empezar() {
-  formulario.style.display = "none";
-  
-  document.getElementById("canvas-container").style.display = "flex";
-// Obtener un nuevo conjunto aleatorio de animales
-  animales = obtenerAleatorios(opciones, 3);
-  obtenerValorAleatorioNoRepetitivo();
-
-  console.log(animales);
-  // Llamar cargarImagenes después de que se haya inicializado animales
-  cargarImagenes();
-  if (!existe()) {
-    alta();
-    const user = JSON.parse(users[indice]);
-    document.getElementById("user-name").innerHTML = `Bienvenido ${user.userName}`;
-    document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
-    document.getElementById("exampleModalLabel").innerHTML = `Bienvenido ${user.userName}`;
-    document.getElementById("modal-p").innerHTML = `Tu score es de 0 pero estoy seguro a que llegaras a los mejores 5`;
-  } else {
-    // alert("Usuario  existe en el indice:" + indice)
-    const user = JSON.parse(users[indice]);
-    document.getElementById("user-name").innerHTML = `Bienvenido ${user.userName}`;
-    document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
-    document.getElementById("exampleModalLabel").innerHTML = `Bienvenido de nuevo ${user.userName} `;
-    document.getElementById("modal-p").innerHTML = `Tu mejor score quedo en ${user.userScore} venga mejoremos`;
-  }
-
-  // dibujar();
-}
-
 function dibujar() {
-  lapiz.clearRect(0, 0, 800, 400);
-  for (let animal of animales) {
-    // Dibuja el animal
-    lapiz.drawImage(animal.casaImageObj, animal.casaX, animal.casaY, 150, 150);
-    lapiz.drawImage(
-      animal.animalImageObj,
-      animal.animalX,
-      animal.animalY,
-      150,
-      150
-    );
-    // Dibuja la casa
-  }
-}
-
-// funcion para comprobar si el usuario ya exitia y guardar el indice
-function existe() {
-  var userName = document.getElementById("name").value;
-  var user = JSON.stringify({
-    userName: userName,
-    userScore: 0,
-  });
-  for (var i in users) {
-    var user = JSON.parse(users[i]);
-    if (user.userName == userName) {
-      indice = i;
-      return true;
+    lapiz.clearRect(0, 0, 800, 400);
+    for (let animal of animales) {
+      // Dibuja el animal
+      lapiz.drawImage(animal.casaImageObj, animal.casaX, animal.casaY, 150, 150);
+      lapiz.drawImage(
+        animal.animalImageObj,
+        animal.animalX,
+        animal.animalY,
+        150,
+        150
+      );
+      // Dibuja la casa
     }
-  }
-  return false;
 }
+  
 
-// si no existe se da de alta y se indica que el indice es el ultimo elemento
-function alta() {
-  var userName = document.getElementById("name").value;
-  var userScore = 0;
-  var user = JSON.stringify({
-    userName: userName,
-    userScore: userScore,
-  });
-  users.push(user);
-  localStorage.setItem("users", JSON.stringify(users));
-  indice=users.length-1;
-}
+   window.onload= function () {
+    canvas = document.getElementById("gameCanvas");
+    lapiz = canvas.getContext("2d");
+    
+    document.getElementById("user-name").innerHTML = `Bienvenido ${user.userName}`;
+    document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
+    animales = obtenerAleatorios(opciones, 3);
+    obtenerValorAleatorioNoRepetitivo();
 
+    console.log(animales);
+    cargarImagenes();
 
-// funcion que oculta los botones del inicio y muestra los creditos
-function adios() {
-  document.getElementById("container-buttons").style.display = "none";
-  var adios = (document.getElementById("creditos").style.display = "flex");
-}
-
-// funcion para mutiar el audio de fondo y cambiar el icono de musica de fondo
-function mute() {
-  const logosMute = document.getElementsByClassName("volumen");
-  const miAudio = document.getElementById("audio");
-
-  for (const logo of logosMute) {
-    if (miAudio.muted) {
-      logo.classList.add("fa-volume-high");
-      logo.classList.remove("fa-volume-xmark");
-    } else {
-      logo.classList.remove("fa-volume-high");
-      logo.classList.add("fa-volume-xmark");
-    }
+    //   eventos del canvas de mouse disparadores cuando ocurren hacen la funcion 
+    canvas.onmousedown = mouse_down;
+    canvas.onmouseup = mouse_up;
+    canvas.onmousemove = mouse_move;
+    canvas.onmouseout = mouse_out;
+    
   }
 
-  miAudio.muted = !miAudio.muted;
-}
-
- // Cada animal tiene dos imágenes
-
-
-// funcion para cargar las imagenes antes de ser pintadas en el canvas esto evita que salgan parpadiando
-function cargarImagenes() {
+  function cargarImagenes() {
 
     imagesLoaded = 0;
     totalImages = 6;
@@ -330,6 +245,7 @@ let mouse_up = function (event) {
 
   }
   
+
   if(aciertos==3){
     
     if(scoreCurrent>user.userScore){
@@ -344,7 +260,9 @@ let mouse_up = function (event) {
 
 };
 
-function actualizarPuntajeNuevo() {
+
+  
+  function actualizarPuntajeNuevo() {
     const user = JSON.parse(users[indice]);
   
     // Actualiza el puntaje del usuario
@@ -414,8 +332,3 @@ function reproducirSonidoGanador() {
     audio.play();
   }
 
-//   eventos del canvas de mouse disparadores cuando ocurren hacen la funcion 
-canvas.onmousedown = mouse_down;
-canvas.onmouseup = mouse_up;
-canvas.onmousemove = mouse_move;
-canvas.onmouseout = mouse_out;
