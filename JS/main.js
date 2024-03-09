@@ -18,6 +18,9 @@ let preY;
 let scoreCurrent=0;
 var aciertos = 0;
 
+let imagesLoaded = 0;
+let totalImages = 0;
+
 
 
 
@@ -49,28 +52,92 @@ class Animal {
   }
 }
 
-let animales = [
-  new Animal(50, 250, "./Imagenes/mono.png", 50, 25, "./Imagenes/arbol.png"),
-  new Animal(350, 250, "./Imagenes/shark.jpg", 350, 25, "./Imagenes/mar.jpg"),
-  new Animal(600, 250, "./Imagenes/shark.jpg", 600, 25, "./Imagenes/aaron.jpg"),
+let opciones = [
+  new Animal(0, 250, "./mono.png", 0, 25, "./arbol.png"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./mar.jpg"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./aaron.jpg"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./alan.jpg"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./omar.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./aaron.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./alan.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./mar.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./omar.jpg"),
 ];
+
+var animales;
 
 window.onload = function () {
   // document.getElementById("canvas-container").style.display = "none";
-  cargarImagenes();
+  
   // var btnStart = document.getElementById("btn-start");
   // btnStart.addEventListener("click", startGame, false);
   const miAudio = document.getElementById("audio");
   miAudio.volume = 0.4;
+
+  
+  
 };
 
+// oculta los botones del inicio y desoculta el form donde pones el nombre
+function startGame() {
+  document.getElementById("container-buttons").style.display = "none";
+  var formulario = document.getElementById("formulario");
+  formulario.style.display = "flex";
+  formulario.style.flexDirection = "column";
+  formulario.style.justifyContent = "center";
+  formulario.style.alignItems = "center";
+}
+
+function obtenerAleatorios(arr, cantidad) {
+    // Copia el array para no modificar el original
+    const opcionesCopia = arr.slice();
+  
+    // Función de comparación aleatoria
+    const comparacionAleatoria = () => Math.random() - 0.5;
+  
+    // Mezcla el array usando la función de comparación aleatoria
+    opcionesCopia.sort(comparacionAleatoria);
+  
+    // Devuelve los primeros 'cantidad' elementos del array mezclado
+    return opcionesCopia.slice(0, cantidad);
+  }
+
+
+  function obtenerValorAleatorioNoRepetitivo() {
+    var valoresX = [50, 350, 600];
+
+    // Mezclar el arreglo de opciones de manera aleatoria
+    var opcionesMezcladas = valoresX.sort(function () {
+      return Math.random() - 0.5;
+    });
+  
+    // Obtener los primeros 3 elementos del arreglo mezclado
+    var valoresAleatorios = opcionesMezcladas.slice(0, 3);
+    animales[0].animalX=valoresAleatorios[0];
+    animales[1].animalX=valoresAleatorios[1];
+    animales[2].animalX=valoresAleatorios[2];
+
+    var opcionesMezcladas2 = valoresX.sort(function () {
+        return Math.random() - 0.5;
+      });
+    var valoresAleatorios2 = opcionesMezcladas2.slice(0, 3);
+    animales[0].casaX=valoresAleatorios2[0];
+    animales[1].casaX=valoresAleatorios2[1];
+    animales[2].casaX=valoresAleatorios2[2];
+  }
+  
 // oculta el form y desoculta el canvas y el modal tambien checa si el usuario ya existe o es nuevo
 function empezar() {
   formulario.style.display = "none";
-
+  
   document.getElementById("canvas-container").style.display = "flex";
-  cargarImagenes();
+// Obtener un nuevo conjunto aleatorio de animales
+  animales = obtenerAleatorios(opciones, 3);
+  obtenerValorAleatorioNoRepetitivo();
 
+  console.log(animales);
+  // Llamar cargarImagenes después de que se haya inicializado animales
+  cargarImagenes();
   if (!existe()) {
     alta();
     const user = JSON.parse(users[indice]);
@@ -139,10 +206,37 @@ function alta() {
 
 let imagesLoaded = 0;
 let totalImages = animales.length * 2; // Cada animal tiene dos imágenes
+// funcion que oculta los botones del inicio y muestra los creditos
+function adios() {
+  document.getElementById("container-buttons").style.display = "none";
+  var adios = (document.getElementById("creditos").style.display = "flex");
+}
+
+// funcion para mutiar el audio de fondo y cambiar el icono de musica de fondo
+function mute() {
+  const logosMute = document.getElementsByClassName("volumen");
+  const miAudio = document.getElementById("audio");
+
+  for (const logo of logosMute) {
+    if (miAudio.muted) {
+      logo.classList.add("fa-volume-high");
+      logo.classList.remove("fa-volume-xmark");
+    } else {
+      logo.classList.remove("fa-volume-high");
+      logo.classList.add("fa-volume-xmark");
+    }
+  }
+
+  miAudio.muted = !miAudio.muted;
+}
+
 
 
 // funcion para cargar las imagenes antes de ser pintadas en el canvas esto evita que salgan parpadiando
 function cargarImagenes() {
+
+    imagesLoaded = 0;
+    totalImages = 6;
   for (let animal of animales) {
     cargarImagen(animal);
   }
