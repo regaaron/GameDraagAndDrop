@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto 1</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <script src="https://kit.fontawesome.com/673553f744.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script> 
 </head>
 <body >
 
   <div class="video-container">
     <video id="video-background" autoplay muted loop>
-      <source src="fondo.mp4" type="video/mp4">
+      <source src="Sonidos/fondo.mp4" type="video/mp4">
     </video>
   </div>
 
@@ -24,11 +24,12 @@
 
     
     <audio id="audio" autoplay loop >
-      <source src="audio.mp3" >
+      <source src="Sonidos/audio.mp3" >
     </audio>
-    <audio id="audio-point" src="point.mp3"></audio>
-    <audio id="audio-error" src="error.mp3"></audio>
+    <audio id="audio-point" src="Sonidos/point.mp3"></audio>
+    <audio id="audio-error" src="Sonidos/error.mp3"></audio>
 
+    <!--Seccion de inicio-->
     <section id="container-buttons" class="animate__animated animate__bounceInDown">
           <button class="button2" id="btn-start" type="button" onclick="startGame();">
             Start Game
@@ -47,9 +48,10 @@
             <strong><i class="fa-solid fa-volume-high volumen" id="logo-mute"></i></strong>
           </button>
           
-          
     </section>
+    <!--Fin de seccion de inicio-->
 
+    <!--Seccion de creditos-->
     <section id="creditos" class="animate__animated animate__zoomInUp">
 
       <div class="back">
@@ -59,7 +61,7 @@
 
         
         <div class="card" style="width: 18rem;">
-          <img src="aaron.jpg" class="card-img-top" alt="...">
+          <img src="Imagenes/aaron.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Luis Aaron Lopez Ramirez</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -71,7 +73,7 @@
       </div>
       
       <div class="card" style="width: 18rem;">
-        <img src="alan.jpg" class="card-img-top" alt="...">
+        <img src="Imagenes/alan.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Alan Kaled Guerrero Ortiz </h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -83,7 +85,7 @@
       </div>
       
       <div class="card" style="width: 18rem;">
-        <img src="omar.jpg" class="card-img-top" alt="...">
+        <img src="Imagenes/omar.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Omar Reyes Ramirez</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -95,9 +97,9 @@
       </div>
       
       <div class="card" style="width: 18rem;">
-        <img src="aaron.jpg" class="card-img-top" alt="...">
+        <img src="Imagenes/aaron.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Luis Aaron Lopez Ramirez</h5>
+          <h5 class="card-title">Johan</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <a href="#" class="button2"><i class="fa-brands fa-github"></i></a>
           <a href="#" class="button2"><i class="fa-brands fa-facebook"></i></a>
@@ -108,9 +110,11 @@
       
     </div>
     </section>
+    <!--Fin de seccion de creditos-->
     
-    
-    <section >
+    <!--Seccion antes de empezar el juego-->
+    <section>
+      <!--Seccion de colocar tu nombre-->
       <form class="formulario " id="formulario" onsubmit="return false;">
         <label for="name" class="label-name animate__animated animate__fadeInLeft">
           Ingresa tu nombre
@@ -120,34 +124,30 @@
           Empezar
         </button>
       </form>
-
-       <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <p id="modal-p"></p>
-              </div>
-              <div class="modal-footer">
-                 
-                  <button type="submit"  class="btn btn-success" data-bs-dismiss="modal">ok</button>
-              </div>
-          </div>
+    <!--Fin de seccion de empezar-->
+    
+    <!--Inicio del juego haciendo dando bienvenida y recordando score-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-p"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"  class="btn btn-success" data-bs-dismiss="modal">ok</button>
+                </div>
+            </div>
+        </div>
       </div>
-
-
-  </div>
-    
-
-
+      <!--Fin de inicio del juego haciendo dando bienvenida y recordando score-->
     </section>
+    <!--Fin de seccion antes de empezar el juego-->
     
-    
-    
+    <!--Seccion del juego-->
     <main id="canvas-container">
 
       <div class="menu-canvas">
@@ -156,11 +156,13 @@
         <a href="" class="button2 ">salir</a>
       </div>
 
-      <canvas id="gameCanvas" width="800" height="400" ></canvas>
+      <canvas id="gameCanvas" width="1200" height="600" ></canvas>
 
     </main> 
+    <!--Fin de seccion del juego-->
     
-    <script src="main.js"></script>
+    <script src="JS/main.js"></script>
+    <script src="JS/inicio.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </div>
   </body>

@@ -50,9 +50,9 @@ class Animal {
 }
 
 let animales = [
-  new Animal(50, 250, "./mono.png", 50, 25, "./arbol.png"),
-  new Animal(350, 250, "./shark.jpg", 350, 25, "./mar.jpg"),
-  new Animal(600, 250, "./shark.jpg", 600, 25, "./aaron.jpg"),
+  new Animal(50, 250, "./Imagenes/mono.png", 50, 25, "./Imagenes/arbol.png"),
+  new Animal(350, 250, "./Imagenes/shark.jpg", 350, 25, "./Imagenes/mar.jpg"),
+  new Animal(600, 250, "./Imagenes/shark.jpg", 600, 25, "./Imagenes/aaron.jpg"),
 ];
 
 window.onload = function () {
@@ -63,16 +63,6 @@ window.onload = function () {
   const miAudio = document.getElementById("audio");
   miAudio.volume = 0.4;
 };
-
-// oculta los botones del inicio y desoculta el form donde pones el nombre
-function startGame() {
-  document.getElementById("container-buttons").style.display = "none";
-  var formulario = document.getElementById("formulario");
-  formulario.style.display = "flex";
-  formulario.style.flexDirection = "column";
-  formulario.style.justifyContent = "center";
-  formulario.style.alignItems = "center";
-}
 
 // oculta el form y desoculta el canvas y el modal tambien checa si el usuario ya existe o es nuevo
 function empezar() {
@@ -145,32 +135,6 @@ function alta() {
   localStorage.setItem("users", JSON.stringify(users));
   indice=users.length-1;
 }
-
-
-// funcion que oculta los botones del inicio y muestra los creditos
-function adios() {
-  document.getElementById("container-buttons").style.display = "none";
-  var adios = (document.getElementById("creditos").style.display = "flex");
-}
-
-// funcion para mutiar el audio de fondo y cambiar el icono de musica de fondo
-function mute() {
-  const logosMute = document.getElementsByClassName("volumen");
-  const miAudio = document.getElementById("audio");
-
-  for (const logo of logosMute) {
-    if (miAudio.muted) {
-      logo.classList.add("fa-volume-high");
-      logo.classList.remove("fa-volume-xmark");
-    } else {
-      logo.classList.remove("fa-volume-high");
-      logo.classList.add("fa-volume-xmark");
-    }
-  }
-
-  miAudio.muted = !miAudio.muted;
-}
-
 
 
 let imagesLoaded = 0;
@@ -296,7 +260,7 @@ function actualizarPuntajeNuevo() {
   
     // Actualiza el puntaje del usuario
     user.userScore = scoreCurrent;
-    users[indice]=user;
+    users[indice]=user.stringify(user);
 
     // Guardar la información actualizada en el localStorage
     localStorage.setItem("users", JSON.stringify(users));
