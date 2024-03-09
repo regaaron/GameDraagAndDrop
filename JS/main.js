@@ -19,10 +19,7 @@ let scoreCurrent=0;
 var aciertos = 0;
 
 let imagesLoaded = 0;
-let totalImages = 0;
-
-
-
+let totalImages = 0
 
 class Animal {
   constructor(animalX, animalY, animalImage, casaX, casaY, casaImage) {
@@ -73,8 +70,6 @@ window.onload = function () {
   // btnStart.addEventListener("click", startGame, false);
   const miAudio = document.getElementById("audio");
   miAudio.volume = 0.4;
-
-  
   
 };
 
@@ -126,6 +121,7 @@ function obtenerAleatorios(arr, cantidad) {
     animales[2].casaX=valoresAleatorios2[2];
   }
   
+
 // oculta el form y desoculta el canvas y el modal tambien checa si el usuario ya existe o es nuevo
 function empezar() {
   formulario.style.display = "none";
@@ -204,7 +200,6 @@ function alta() {
 }
 
 
-imagesLoaded = 0;
 // funcion que oculta los botones del inicio y muestra los creditos
 function adios() {
   document.getElementById("container-buttons").style.display = "none";
@@ -229,6 +224,7 @@ function mute() {
   miAudio.muted = !miAudio.muted;
 }
 
+ // Cada animal tiene dos imágenes
 
 
 // funcion para cargar las imagenes antes de ser pintadas en el canvas esto evita que salgan parpadiando
@@ -353,7 +349,7 @@ function actualizarPuntajeNuevo() {
   
     // Actualiza el puntaje del usuario
     user.userScore = scoreCurrent;
-    users[indice]=user.stringify(user);
+    users[indice]=JSON.stringify(user);
 
     // Guardar la información actualizada en el localStorage
     localStorage.setItem("users", JSON.stringify(users));
