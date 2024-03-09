@@ -102,25 +102,43 @@ function obtenerAleatorios(arr, cantidad) {
     return opcionesCopia.slice(0, cantidad);
   }
 
+
+  function obtenerValorAleatorioNoRepetitivo() {
+    var valoresX = [50, 350, 600];
+
+    // Mezclar el arreglo de opciones de manera aleatoria
+    var opcionesMezcladas = valoresX.sort(function () {
+      return Math.random() - 0.5;
+    });
+  
+    // Obtener los primeros 3 elementos del arreglo mezclado
+    var valoresAleatorios = opcionesMezcladas.slice(0, 3);
+    animales[0].animalX=valoresAleatorios[0];
+    animales[1].animalX=valoresAleatorios[1];
+    animales[2].animalX=valoresAleatorios[2];
+
+    var opcionesMezcladas2 = valoresX.sort(function () {
+        return Math.random() - 0.5;
+      });
+    var valoresAleatorios2 = opcionesMezcladas2.slice(0, 3);
+    animales[0].casaX=valoresAleatorios2[0];
+    animales[1].casaX=valoresAleatorios2[1];
+    animales[2].casaX=valoresAleatorios2[2];
+  }
+  
+
 // oculta el form y desoculta el canvas y el modal tambien checa si el usuario ya existe o es nuevo
 function empezar() {
   formulario.style.display = "none";
-
+  
   document.getElementById("canvas-container").style.display = "flex";
 // Obtener un nuevo conjunto aleatorio de animales
   animales = obtenerAleatorios(opciones, 3);
-  animales[0].animalX=50;
-  animales[1].animalX=350;
-  animales[2].animalX=600;
-  animales[0].casaX=50;
-  animales[1].casaX=350;
-  animales[2].casaX=600;
+  obtenerValorAleatorioNoRepetitivo();
 
   console.log(animales);
-
   // Llamar cargarImagenes después de que se haya inicializado animales
   cargarImagenes();
-
   if (!existe()) {
     alta();
     const user = JSON.parse(users[indice]);
@@ -210,8 +228,6 @@ function mute() {
 
   miAudio.muted = !miAudio.muted;
 }
-
-
 
  // Cada animal tiene dos imágenes
 
