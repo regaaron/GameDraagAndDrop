@@ -25,13 +25,14 @@ let imagesLoaded = 0;
 let totalImages = 0
 
 class Animal {
-    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage) {
+    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage, bandera) {
       this.animalX = animalX;
       this.animalY = animalY;
       this.animalImage = animalImage;
       this.casaX = casaX;
       this.casaY = casaY;
       this.casaImage = casaImage;
+      this.bandera = bandera;
     }
   
     Info() {
@@ -53,15 +54,15 @@ class Animal {
   }
   
   let opciones = [
-    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/HabitadMono.png"),
-    new Animal(0, 250, "./Imagenes/Caballo.png", 0, 25, "./Imagenes/HabitadCaballo.png"),
-    new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png"),
-    new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png"),
-    new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png"),
-    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png"),
-    new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png"),
-    new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png"),
-    new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png"),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/HabitadMono.png", false),
+    new Animal(0, 250, "./Imagenes/Caballo.png", 0, 25, "./Imagenes/HabitadCaballo.png", false),
+    new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png", false),
+    new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png", false),
+    new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png", false),
+    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false),
+    new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png", false),
+    new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png", false),
+    new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png", false),
   ];
   
 
@@ -108,41 +109,52 @@ function obtenerAleatorios(arr, cantidad) {
 
   
 function dibujar() {
-    lapiz.clearRect(0, 0, 800, 400);
+    lapiz.clearRect(0, 0, canvas.width, canvas.height);
     for (let animal of animales) {
       // Dibuja el animal
-      lapiz.drawImage(animal.casaImageObj, animal.casaX, animal.casaY, 150, 150);
-      lapiz.drawImage(
-        animal.animalImageObj,
-        animal.animalX,
-        animal.animalY,
-        150,
-        150
-      );
+      drawCircularImage(lapiz, animal.casaImageObj, animal.casaX, animal.casaY, 100); // 100 es el radio del círculo
+      drawCircularImage(lapiz, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
       // Dibuja la casa
     }
 }
   
 
-   window.onload= function () {
-    canvas = document.getElementById("gameCanvas");
-    lapiz = canvas.getContext("2d");
-    
-    document.getElementById("user-name").innerHTML = `Bienvenido ${user.userName}`;
-    document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
-    animales = obtenerAleatorios(opciones, 3);
-    obtenerValorAleatorioNoRepetitivo();
+window.onload = function () {
+  canvas = document.getElementById("gameCanvas");
+  lapiz = canvas.getContext("2d");
 
-    console.log(animales);
-    cargarImagenes();
+  document.getElementById("user-name").innerHTML = `Bienvenido ${user.userName}`;
+  document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
 
-    //   eventos del canvas de mouse disparadores cuando ocurren hacen la funcion 
-    canvas.onmousedown = mouse_down;
-    canvas.onmouseup = mouse_up;
-    canvas.onmousemove = mouse_move;
-    canvas.onmouseout = mouse_out;
-    
-  }
+  // Divide el ancho del canvas en tres partes iguales
+  const widthThird = canvas.width / 3;
+
+  // Define las coordenadas X de las casas y los animales en función de las partes del canvas
+  const casaX1 = 0;
+  const casaX2 = widthThird;
+  const casaX3 = widthThird * 2;
+
+  // Genera las opciones de animales
+  animales = obtenerAleatorios(opciones, 3);
+
+  // Asigna las coordenadas X de las casas y los animales
+  animales[0].casaX = casaX1 + 50;
+  animales[1].casaX = casaX2 + 50;
+  animales[2].casaX = casaX3 + 50;
+
+  animales[0].animalX = casaX1 + 80; // Ajusta el valor según tus necesidades
+  animales[1].animalX = casaX2 + 80; // Ajusta el valor según tus necesidades
+  animales[2].animalX = casaX3 + 80; // Ajusta el valor según tus necesidades
+
+  cargarImagenes();
+
+  // eventos del canvas de mouse disparadores cuando ocurren hacen la funcion
+  canvas.onmousedown = mouse_down;
+  canvas.onmouseup = mouse_up;
+  canvas.onmousemove = mouse_move;
+  canvas.onmouseout = mouse_out;
+};
+
 
   function cargarImagenes() {
 
@@ -205,15 +217,16 @@ let mouse_down = function (event) {
 
 let is_mouse_in_animal = function (x, y, animal) {
     let animal_left = animal.animalX;
-    let animal_right = animal.animalX + 150;
+    let animal_right = animal.animalX + 200; // Ajusta al nuevo tamaño de imagen
     let animal_top = animal.animalY;
-    let animal_bottom = animal.animalY + 150;
+    let animal_bottom = animal.animalY + 200; // Ajusta al nuevo tamaño de imagen
   
     return (
       x > animal_left && x < animal_right && y > animal_top && y < animal_bottom
     );
 };
 
+// logica del drop o soltar el clik
 // logica del drop o soltar el clik
 let mouse_up = function (event) {
   let finX = parseInt(event.offsetX);
@@ -224,7 +237,7 @@ let mouse_up = function (event) {
   event.preventDefault();
   const user = JSON.parse(users[indice]);
 
-//   comprobamos si el animal esta dentro de la casa para hacer todo como puntos sonido etc
+  // comprobamos si el animal esta dentro de la casa para hacer todo como puntos sonido etc
   if (dentroCasa(finX, finY)) {
     const jsConfetti = new JSConfetti();
     jsConfetti.addConfetti({
@@ -232,25 +245,26 @@ let mouse_up = function (event) {
       confettiRadius: 6,
       confettiNumber: 50,
     });
-    scoreCurrent += 10;
-    aciertos++
-    console.log(`aciertos=${aciertos}`);
-    reproducirSonidoGanador();
+    if(animales[current_animal_index].bandera == false){
+      scoreCurrent += 10;
+      aciertos++
+      console.log(`aciertos=${aciertos}`);
+      reproducirSonidoGanador();
+    }
     
-  } else {
+    // Actualiza la bandera del animal a verdadero cuando está dentro de la casa
+    animales[current_animal_index].bandera = true;
+  } else if(animales[current_animal_index].bandera == false){
     let current_animal = animales[current_animal_index];
     current_animal.animalX = preX;
     current_animal.animalY = preY;
     scoreCurrent -= 10;
     reproducirSonidoPerdedor();
-
   }
   
-
   if(aciertos==3){
-    
     if(scoreCurrent>user.userScore){
-        actualizarPuntajeNuevo();
+      actualizarPuntajeNuevo();
     }
   }
 
@@ -258,11 +272,9 @@ let mouse_up = function (event) {
 
   dibujar();
   is_dagging = false;
-
 };
-
-
   
+
   function actualizarPuntajeNuevo() {
     const user = JSON.parse(users[indice]);
   
@@ -279,8 +291,8 @@ let mouse_up = function (event) {
 const dentroCasa = function (x, y) {
   let animal = animales[current_animal_index];
    return (
-    x > animal.casaX &&x < animal.casaX + 150 &&
-    y > animal.casaY && y < animal.casaY + 150
+    x > animal.casaX &&x < animal.casaX + 200 && // Ajusta al nuevo tamaño de imagen
+    y > animal.casaY && y < animal.casaY + 200 // Ajusta al nuevo tamaño de imagen
   );
     
 };
@@ -296,24 +308,22 @@ let mouse_out = function (event) {
 
 // logica del movimiento
 let mouse_move = function (event) {
-
   if (!is_dagging) {
     return;
   } else {
     event.preventDefault();
-
     let mouseX = parseInt(event.offsetX);
     let mouseY = parseInt(event.offsetY);
 
-    // deltax y deltay es para saber cuantos pixeles se ha movido desde el inicio y movernos esos 
-    // pixeles y se actualiza starX y startY
-    let dx = mouseX - startX;
-    let dy = mouseY - startY;
-
+    // Verifica si la bandera del animal está en falso
     let current_animal = animales[current_animal_index];
-    current_animal.animalX += dx;
-    current_animal.animalY += dy;
-
+    if (!current_animal.bandera) {
+      // Si la bandera es falsa, permitir el movimiento del animal
+      let dx = mouseX - startX;
+      let dy = mouseY - startY;
+      current_animal.animalX += dx;
+      current_animal.animalY += dy;
+    }
 
     dibujar();
 
@@ -333,3 +343,13 @@ function reproducirSonidoGanador() {
     audio.play();
   }
 
+// Función para dibujar una imagen en forma circular
+function drawCircularImage(context, image, x, y, radius) {
+    context.save();
+    context.beginPath();
+    context.arc(x + radius, y + radius, radius, 0, Math.PI * 2, true);
+    context.closePath();
+    context.clip();
+    context.drawImage(image, x, y, radius * 2, radius * 2);
+    context.restore();
+}
