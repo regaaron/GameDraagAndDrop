@@ -248,12 +248,16 @@ let mouse_up = function (event) {
     
     // Actualiza la bandera del animal a verdadero cuando está dentro de la casa
     animales[current_animal_index].bandera = true;
-  } else if(animales[current_animal_index].bandera == false){
+  } else if (animales[current_animal_index].bandera == false) {
+    if (dentroOtraCasa(finX, finY)) {
+      scoreCurrent -= 10;
+      reproducirSonidoPerdedor();
+    }
+    
+    // Devolver el animal a su posición original
     let current_animal = animales[current_animal_index];
     current_animal.animalX = preX;
     current_animal.animalY = preY;
-    scoreCurrent -= 10;
-    reproducirSonidoPerdedor();
   }
   
   if(aciertos==3){
@@ -281,6 +285,26 @@ let mouse_up = function (event) {
 
   }
 
+
+  const dentroOtraCasa = function (x, y) {
+    // Iterar sobre todas las casas excepto la casa actual del animal
+    for (let i = 0; i < opciones.length; i++) {
+      if (i !== current_animal_index) {
+        let casa = opciones[i];
+        // Verificar si las coordenadas (x, y) están dentro de la casa actual
+        if (
+          x > casa.casaX &&
+          x < casa.casaX + 200 && // Ajusta al nuevo tamaño de imagen
+          y > casa.casaY &&
+          y < casa.casaY + 200 // Ajusta al nuevo tamaño de imagen
+        ) {
+          return true; // Devolver true si las coordenadas están dentro de la casa
+        }
+      }
+    }
+    return false; // Devolver false si las coordenadas no están dentro de ninguna otra casa
+  };
+  
 
 const dentroCasa = function (x, y) {
   let animal = animales[current_animal_index];
