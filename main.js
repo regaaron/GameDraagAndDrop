@@ -18,6 +18,9 @@ let preY;
 let scoreCurrent=0;
 var aciertos = 0;
 
+let imagesLoaded = 0;
+let totalImages = 0
+
 
 
 
@@ -49,19 +52,30 @@ class Animal {
   }
 }
 
-let animales = [
-  new Animal(50, 250, "./mono.png", 50, 25, "./arbol.png"),
-  new Animal(350, 250, "./shark.jpg", 350, 25, "./mar.jpg"),
-  new Animal(600, 250, "./shark.jpg", 600, 25, "./aaron.jpg"),
+let opciones = [
+  new Animal(0, 250, "./mono.png", 0, 25, "./arbol.png"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./mar.jpg"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./aaron.jpg"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./alan.jpg"),
+  new Animal(0, 250, "./shark.jpg", 0, 25, "./omar.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./aaron.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./alan.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./mar.jpg"),
+  new Animal(0, 250, "./mono.png", 0, 25, "./omar.jpg"),
 ];
+
+var animales;
 
 window.onload = function () {
   // document.getElementById("canvas-container").style.display = "none";
-  cargarImagenes();
+  
   // var btnStart = document.getElementById("btn-start");
   // btnStart.addEventListener("click", startGame, false);
   const miAudio = document.getElementById("audio");
   miAudio.volume = 0.4;
+
+  
+  
 };
 
 // oculta los botones del inicio y desoculta el form donde pones el nombre
@@ -74,11 +88,37 @@ function startGame() {
   formulario.style.alignItems = "center";
 }
 
+function obtenerAleatorios(arr, cantidad) {
+    // Copia el array para no modificar el original
+    const opcionesCopia = arr.slice();
+  
+    // Función de comparación aleatoria
+    const comparacionAleatoria = () => Math.random() - 0.5;
+  
+    // Mezcla el array usando la función de comparación aleatoria
+    opcionesCopia.sort(comparacionAleatoria);
+  
+    // Devuelve los primeros 'cantidad' elementos del array mezclado
+    return opcionesCopia.slice(0, cantidad);
+  }
+
 // oculta el form y desoculta el canvas y el modal tambien checa si el usuario ya existe o es nuevo
 function empezar() {
   formulario.style.display = "none";
 
   document.getElementById("canvas-container").style.display = "flex";
+// Obtener un nuevo conjunto aleatorio de animales
+  animales = obtenerAleatorios(opciones, 3);
+  animales[0].animalX=50;
+  animales[1].animalX=350;
+  animales[2].animalX=600;
+  animales[0].casaX=50;
+  animales[1].casaX=350;
+  animales[2].casaX=600;
+
+  console.log(animales);
+
+  // Llamar cargarImagenes después de que se haya inicializado animales
   cargarImagenes();
 
   if (!existe()) {
@@ -173,12 +213,14 @@ function mute() {
 
 
 
-let imagesLoaded = 0;
-let totalImages = animales.length * 2; // Cada animal tiene dos imágenes
+ // Cada animal tiene dos imágenes
 
 
 // funcion para cargar las imagenes antes de ser pintadas en el canvas esto evita que salgan parpadiando
 function cargarImagenes() {
+
+    imagesLoaded = 0;
+    totalImages = 6;
   for (let animal of animales) {
     cargarImagen(animal);
   }
@@ -296,7 +338,7 @@ function actualizarPuntajeNuevo() {
   
     // Actualiza el puntaje del usuario
     user.userScore = scoreCurrent;
-    users[indice]=user;
+    users[indice]=JSON.stringify(user);
 
     // Guardar la información actualizada en el localStorage
     localStorage.setItem("users", JSON.stringify(users));
