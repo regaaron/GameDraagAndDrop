@@ -24,6 +24,28 @@
       .hidden {
           display: none;
       }
+
+      <style>
+      .button-centrado {
+        position: relative;
+        padding-right: 20px; /* Ajusta según sea necesario */
+        
+      }
+
+      .button-desabilitado{
+        pointer-events: none;
+        cursor: default;
+        background-color: #6c757d;
+        border-color: #6c757d;
+      }
+
+      .fa-solid2{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+</style>
     </style>
 
 </head>
@@ -56,7 +78,9 @@
       
       <canvas id="gameCanvas3" width="1200" height="450"></canvas>
 
-      <img id="flecha" src="Imagenes/flecha.png" width="120" height="120">
+      <button id="flecha" class="button2 button-centrado button-desabilitado">Next <i class="fa-solid fa-arrow-right "></i></button>
+    
+      <!-- <img id="flecha" src="Imagenes/flecha.png" width="120" height="120"> -->
 
     </main> 
     <script src="JS/juego.js"></script>

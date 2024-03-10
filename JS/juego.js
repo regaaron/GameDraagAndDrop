@@ -381,6 +381,10 @@ let mouse_up = function (event) {
       opciones2[contador] = animales[current_animal_index].number1;
       contador++;
       aciertos++
+      if(aciertos == 3  || aciertos == 6){
+        document.getElementById("flecha").classList.remove("button-desabilitado");
+      }
+      
       console.log(opciones2[contador]);
       console.log(`aciertos=${aciertos}`);
       reproducirSonidoGanador();
@@ -532,6 +536,7 @@ document.getElementById("flecha").addEventListener("click", function() {
     document.getElementById("gameCanvas").style.display = "none";
     document.getElementById("gameCanvas2").style.display = "block";
     document.getElementById("gameCanvas3").style.display = "none";  
+    document.getElementById("flecha").classList.add("button-desabilitado");
     inicializar();
   }else if(aciertos == 6){
     document.getElementById("gameCanvas").style.display = "none";
