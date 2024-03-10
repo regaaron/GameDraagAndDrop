@@ -179,9 +179,12 @@ canvas{
   /* background-color: transparent; */
   background-color: #9c8070;
   border: 2px solid #000;
-  padding: 0 0 30px 0 ;
+  padding: 0 0 20px 0 ;
   /* height: 400px; */
+  transition: .2s ease-in-out;
 }
+
+
 
 .button2{
   color: #000;
