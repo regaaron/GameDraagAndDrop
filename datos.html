@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script> 
 
     <script src="JS/datos.js"></script>
+    <script src="JS/botones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -37,9 +38,16 @@
           Ingresa tu nombre
           <input type="text" placeholder="Nombre" id="name" class="animate__animated animate__fadeInRightBig">
         </label>
-        <button class="button2 animate__animated animate__fadeInUpBig" id="button-exit" type="submit" onclick="empezar();"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Empezar
-        </button>
+        <div>
+
+          <button class="button2 animate__animated animate__fadeInUpBig" id="button-exit" type="submit" onclick="empezar();"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Empezar
+          </button>
+          <a class="button2" id="button-exit" type="button" onclick="mute();">
+            <strong><i class="fa-solid fa-volume-high volumen" id="logo-mute"></i></strong>
+          </a>
+
+        </div>
       </form>
     <!--Fin de seccion de empezar-->
     
