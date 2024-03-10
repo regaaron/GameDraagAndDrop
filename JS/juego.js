@@ -413,7 +413,7 @@ let mouse_up = function (event) {
       localStorage.setItem("minutos", minutos);
       localStorage.setItem("segundos", segundos);
     }
-    window.location.href = "index.html";
+    window.location.href = "ganador.html";
   }
 
   document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
