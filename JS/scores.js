@@ -20,7 +20,7 @@ function llenarTabla() {
             row.innerHTML = `
                 <td>${userData.userName}</td>
                 <td>${userData.userScore}</td>
-                <td>${userData.userTime}</td>
+                <td>${userData.tiempo}</td>
             `;
             tableBody.appendChild(row);
         });
