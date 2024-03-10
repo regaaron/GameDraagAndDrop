@@ -18,7 +18,7 @@ function empezar() {
       // alert("Usuario  existe en el indice:" + indice)
       const user = JSON.parse(users[indice]);
       document.getElementById("exampleModalLabel").innerHTML = `Bienvenido de nuevo ${user.userName} `;
-      document.getElementById("modal-p").innerHTML = `Tu mejor score quedo en ${user.userScore} venga mejoremos tu timepo de ` + localStorage.getItem("minutos") + ":" + localStorage.getItem("segundos");
+      document.getElementById("modal-p").innerHTML = `Tu mejor score quedo en ${user.userScore} venga mejoremos tu timepo de ${user.tiempo}`;
     }
     
     localStorage.setItem("indice", JSON.stringify(indice));
