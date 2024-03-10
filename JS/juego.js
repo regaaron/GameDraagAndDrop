@@ -413,7 +413,10 @@ let mouse_up = function (event) {
       localStorage.setItem("minutos", minutos);
       localStorage.setItem("segundos", segundos);
     }
-    window.location.href = "ganador.html";
+    setTimeout(function() {
+      window.location.href = "ganador.html";
+    }, 2000);
+    
   }
 
   document.getElementById("user-score").innerHTML = `Score: ${scoreCurrent}`;
