@@ -36,6 +36,12 @@
         .table-container table {
             margin-top: 20px;
         }
+        .table-container td{
+            background-color: rgba(36, 36, 36, 0.485);
+            color: aliceblue;
+            font-weight: bold;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +60,7 @@
             </div>
             
             <div class="table-container">
-                <h2 class="nameJuego">Scores</h2>
+                <h2 class="nameJuego">Mejor puntuaje</h2>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -64,6 +70,21 @@
                         </tr>
                     </thead>
                     <tbody id="scoreTableBody">
+                        <!-- Aquí se llenarán los datos de la tabla dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container">
+                <h2 class="nameJuego">Mejor tiempo</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tiempo</th>
+                            <th>Puntuación</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scoreTableBody2">
                         <!-- Aquí se llenarán los datos de la tabla dinámicamente -->
                     </tbody>
                 </table>
