@@ -508,6 +508,7 @@ document.getElementById("flecha").addEventListener("click", function() {
     document.getElementById("gameCanvas").style.display = "none";
     document.getElementById("gameCanvas2").style.display = "none";
     document.getElementById("gameCanvas3").style.display = "block";  
+    document.getElementById("flecha").style.display = "none";  
     inicializar2();
   }
 });
