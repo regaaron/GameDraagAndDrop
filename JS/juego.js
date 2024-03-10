@@ -60,7 +60,7 @@ let opciones = [
   new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png", false, "Sonidos/SonidoCerdo.mp3"),
   new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png", false, "Sonidos/SonidoElefante.mp3"),
   new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png", false, "Sonidos/SonidoGallina.mp3"),
-  new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false, "Sonidos/sonido_osopolar.mp3"),
+  new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false, "Sonidos/SonidoOsop.mp3"),
   new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png", false, "Sonidos/SonidoPajaro.mp3"),
   new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png", false, "Sonidos/SonidoPerro.mp3"),
   new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png", false, "Sonidos/SonidoRana.mp3"),
