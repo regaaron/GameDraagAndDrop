@@ -29,7 +29,7 @@ let imagesLoaded = 0;
 let totalImages = 0
 
 class Animal {
-    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage, bandera, number1) {
+    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage, bandera, number1, animalSound) {
       this.animalX = animalX;
       this.animalY = animalY;
       this.animalImage = animalImage;
@@ -38,6 +38,7 @@ class Animal {
       this.casaImage = casaImage;
       this.bandera = bandera;
       this.number1 = number1;
+      this.animalSound = animalSound; 
     }
   
     Info() {
@@ -59,15 +60,15 @@ class Animal {
   }
   
   let opciones = [
-    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/HabitadMono.png", false,0),
-    new Animal(0, 250, "./Imagenes/Caballo.png", 0, 25, "./Imagenes/HabitadCaballo.png", false,1),
-    new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png", false,2),
-    new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png", false,3),
-    new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png", false,4),
-    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false,5),
-    new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png", false,6),
-    new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png", false,7),
-    new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png", false,8),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/HabitadMono.png", false,0, "Sonidos/SonidoMono.mp3"),
+    new Animal(0, 250, "./Imagenes/Caballo.png", 0, 25, "./Imagenes/HabitadCaballo.png", false,1, "Sonidos/SonidoCaballo.mp3"),
+    new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png", false,2, "Sonidos/SonidoCerdo.mp3"),
+    new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png", false,3, "Sonidos/SonidoElefante.mp3"),
+    new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png", false,4, "Sonidos/SonidoGallina.mp3"),
+    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false,5, "Sonidos/SonidoOsop.mp3"),
+    new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png", false,6, "Sonidos/SonidoPajaro.mp3"),
+    new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png", false,7, "Sonidos/SonidoPerro.mp3"),
+    new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png", false,8, "Sonidos/SonidoRana.mp3"),
   ];
   
   let opciones2 = [];
@@ -294,26 +295,25 @@ function cargarImagen(animal, onLoadCallback) {
 
 // funcion para cuando haces clik
 let mouse_down = function (event) {
-    event.preventDefault();
-  //   obtener x y y dentro del canvas use offset por si se hace mas chica la pantalla 
-    startX = parseInt(event.offsetX);
-    startY = parseInt(event.offsetY);
-  
-    let index = 0;
-    for (let animal of animales) {
-        // comprobamos si se dio click a uno y guardamos su index del array de 
-        // animales guardamos prex y prey valores iniales por si se equivoca regresar el obj a su posicion
+  event.preventDefault();
+  startX = parseInt(event.offsetX);
+  startY = parseInt(event.offsetY);
+
+  let index = 0;
+  for (let animal of animales) {
       if (is_mouse_in_animal(startX, startY, animal)) {
-        current_animal_index = index;
-        preX = animal.animalX;
-        preY = animal.animalY;
-        is_dagging = true;
-        return;
+          current_animal_index = index;
+          preX = animal.animalX;
+          preY = animal.animalY;
+          is_dagging = true;
+          // Reiniciar el estado sonidoReproducido del animal para permitir la reproducción repetida del sonido
+          animal.sonidoReproducido = false;
+          // Reproducir el sonido del animal
+          reproducirSonidoAnimal(animal);
+          return;
       }
-
       index++;
-    }
-
+  }
 };
 
 
@@ -485,6 +485,7 @@ function reproducirSonidoGanador() {
     audio.play();
   }
 
+
 // Función para dibujar una imagen en forma circular
 function drawCircularImage(context, image, x, y, radius) {
     context.save();
@@ -510,3 +511,12 @@ document.getElementById("flecha").addEventListener("click", function() {
     inicializar2();
   }
 });
+
+// Función para reproducir el sonido del animal
+function reproducirSonidoAnimal(animal) {
+  if (!animal.sonidoReproducido) {
+      var audio = new Audio(animal.animalSound);
+      audio.play();
+      animal.sonidoReproducido = true;
+  }
+}
