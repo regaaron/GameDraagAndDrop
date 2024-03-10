@@ -20,7 +20,11 @@ function llenarTabla() {
             row.innerHTML = `
                 <td>${userData.userName}</td>
                 <td>${userData.userScore}</td>
+<<<<<<< HEAD
                 
+=======
+                <td>${userData.tiempo}</td>
+>>>>>>> 344325770e18a11a3f9d622643071ebfae66f0d4
             `;
             tableBody.appendChild(row);
         });
