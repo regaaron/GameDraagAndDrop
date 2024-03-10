@@ -13,8 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Whisper&display=swap" rel="stylesheet">
+
+
     <script src="JS/ganador.js"></script>
     <script src="JS/botones.js"></script>
+
+    <link rel="shortcut icon" href="Imagenes/favicon.png" type="image/x-icon">
+
 
     <style>
         body {
@@ -33,22 +41,22 @@
         }
 
         #titulo-ganador{
-            font-size: 42px;
-            color: #EE7C18;
-            font-family: fantasy;
+            font-size: 70px;
+            color: #000000;
+            font-family: "Dancing Script", fantasy;
             font-weight: 600;
-            text-shadow: 2px 2px 2px #000000;
+            text-shadow: 2px 2px 2px #e7e5e5;
         }
 
         .p-ganador{
-            background-color: rgba(0, 0, 0, 0.3); /* Color gris oscuro con opacidad */
+            background-color: rgba(0, 0, 0, 0.7); /* Color gris oscuro con opacidad */
             backdrop-filter: blur(5px); /* Efecto de desenfoque */
-            padding: 20px;
-            width: 80%;
+            padding: 50px;
+            width: 85%;
             margin-top: 40px;
             font-size: 28px;
             font-weight: 700;
-            color: #000000;
+            color: #cacacada;
             
         }
 
@@ -75,9 +83,9 @@
     <main class="container-ganador">
         <h1 id="titulo-ganador"></h1>
         <p class="p-ganador">
-            ¡Enhorabuena! Tu dedicación y esfuerzo han sido impresionantes,<br>
+            ¡Enhorabuena! Tu dedicación y esfuerzo han sido impresionantes,<span id="score"></span><br>
             
-            Recuerda que cada desafío superado es una oportunidad para crecer y aprender. <br>
+            Recuerda que cada desafío superado es una oportunidad para crecer y aprender.
             
             Si sientes que es hora de descansar, tómate ese merecido respiro. Pero, si la llama de la aventura sigue ardiendo en tu interior, no esperes mas y volvamos a jugar</p>
         <div>
