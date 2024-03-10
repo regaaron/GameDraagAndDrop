@@ -29,7 +29,7 @@ let imagesLoaded = 0;
 let totalImages = 0
 
 class Animal {
-    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage, bandera, number1, animalSound) {
+    constructor(animalX, animalY, animalImage, casaX, casaY, casaImage, bandera, number1, animalSound, name, nameSound) {
       this.animalX = animalX;
       this.animalY = animalY;
       this.animalImage = animalImage;
@@ -39,6 +39,8 @@ class Animal {
       this.bandera = bandera;
       this.number1 = number1;
       this.animalSound = animalSound; 
+      this.name = name;
+      this.nameSound = nameSound;
     }
   
     Info() {
@@ -60,15 +62,15 @@ class Animal {
   }
   
   let opciones = [
-    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/HabitadMono.png", false,0, "Sonidos/SonidoMono.mp3"),
-    new Animal(0, 250, "./Imagenes/Caballo.png", 0, 25, "./Imagenes/HabitadCaballo.png", false,1, "Sonidos/SonidoCaballo.mp3"),
-    new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png", false,2, "Sonidos/SonidoCerdo.mp3"),
-    new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png", false,3, "Sonidos/SonidoElefante.mp3"),
-    new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png", false,4, "Sonidos/SonidoGallina.mp3"),
-    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false,5, "Sonidos/SonidoOsop.mp3"),
-    new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png", false,6, "Sonidos/SonidoPajaro.mp3"),
-    new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png", false,7, "Sonidos/SonidoPerro.mp3"),
-    new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png", false,8, "Sonidos/SonidoRana.mp3"),
+    new Animal(0, 250, "./Imagenes/mono.png", 0, 25, "./Imagenes/HabitadMono.png", false,0, "Sonidos/SonidoMono.mp3", "MONO", "Sonidos/NombreMono.mp3"),
+    new Animal(0, 250, "./Imagenes/Caballo.png", 0, 25, "./Imagenes/HabitadCaballo.png", false,1, "Sonidos/SonidoCaballo.mp3", "CABALLO", "Sonidos/NombreCaballo.mp3"),
+    new Animal(0, 250, "./Imagenes/Cerdo.png", 0, 25, "./Imagenes/HabitadCerdos.png", false,2, "Sonidos/SonidoCerdo.mp3", "CERDO", "Sonidos/NombreCerdo.mp3"),
+    new Animal(0, 250, "./Imagenes/Elefante.png", 0, 25, "./Imagenes/HabitadElefante.png", false,3, "Sonidos/SonidoElefante.mp3", "ELEFANTE", "Sonidos/NombreElefante.mp3"),
+    new Animal(0, 250, "./Imagenes/Gallina.png", 0, 25, "./Imagenes/HabitadGallinas.png", false,4, "Sonidos/SonidoGallina.mp3", "GALLINA", "Sonidos/NombreGallina.mp3"),
+    new Animal(0, 250, "./Imagenes/Osopolar.png", 0, 25, "./Imagenes/HabitadOsopolar.png", false,5, "Sonidos/SonidoOsop.mp3", "OSO POLAR", "Sonidos/NombreOsop.mp3"),
+    new Animal(0, 250, "./Imagenes/Pajaros.png", 0, 25, "./Imagenes/HabitadPajaros.png", false,6, "Sonidos/SonidoPajaro.mp3", "PAJAROS", "Sonidos/NombrePajaro.mp3"),
+    new Animal(0, 250, "./Imagenes/Perro.png", 0, 25, "./Imagenes/HabitadPerro.png", false,7, "Sonidos/SonidoPerro.mp3", "PERROS", "Sonidos/NombrePerro.mp3"),
+    new Animal(0, 250, "./Imagenes/Rana.png", 0, 25, "./Imagenes/HabitadRana.png", false,8, "Sonidos/SonidoRana.mp3", "RANA", "Sonidos/NombreRana.mp3"),
   ];
   
   let opciones2 = [];
@@ -152,8 +154,17 @@ function dibujar() {
     for (let animal of animales) {
       // Dibuja el animal
       drawCircularImage(lapiz, animal.casaImageObj, animal.casaX, animal.casaY, 100); // 100 es el radio del círculo
-      drawCircularImage(lapiz, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
-      // Dibuja la casa
+      if(animal.bandera == true){
+        let animalWidth = 140; // Ancho de la imagen del animal
+        let habitatWidth = 200; // Ancho de la imagen del hábitat
+        drawCircularImage(lapiz, animal.animalImageObj, animal.casaX + (habitatWidth / 2) - (animalWidth / 2), (habitatWidth / 2) - (animalWidth / 2) + 20, 70); // Coloca el animal en la mitad del hábitat
+        lapiz.font = "32px Arial";
+        lapiz.fillStyle = "white";
+        lapiz.textAlign = "center";
+        lapiz.fillText(animal.name, animal.casaX + (habitatWidth / 2) - (animalWidth / 2) + 70, (habitatWidth / 2) - (animalWidth / 2) + 230); // Ajusta la posición según necesites
+      }else{
+        drawCircularImage(lapiz, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
+      }
     }
 }
 
@@ -162,8 +173,17 @@ function dibujar2() {
   for (let animal of animales) {
     // Dibuja el animal
     drawCircularImage(lapiz2, animal.casaImageObj, animal.casaX, animal.casaY, 100); // 100 es el radio del círculo
-    drawCircularImage(lapiz2, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
-    // Dibuja la casa
+    if(animal.bandera == true){
+      let animalWidth = 140; // Ancho de la imagen del animal
+      let habitatWidth = 200; // Ancho de la imagen del hábitat
+      drawCircularImage(lapiz2, animal.animalImageObj, animal.casaX + (habitatWidth / 2) - (animalWidth / 2), (habitatWidth / 2) - (animalWidth / 2) + 20, 70); // Coloca el animal en la mitad del hábitat
+      lapiz2.font = "32px Arial";
+      lapiz2.fillStyle = "white";
+      lapiz2.textAlign = "center";
+      lapiz2.fillText(animal.name, animal.casaX + (habitatWidth / 2) - (animalWidth / 2) + 70, (habitatWidth / 2) - (animalWidth / 2) + 230); // Ajusta la posición según necesites
+    }else{
+      drawCircularImage(lapiz2, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
+    }
   }
 }
 
@@ -172,8 +192,17 @@ function dibujar3() {
   for (let animal of animales) {
     // Dibuja el animal
     drawCircularImage(lapiz3, animal.casaImageObj, animal.casaX, animal.casaY, 100); // 100 es el radio del círculo
-    drawCircularImage(lapiz3, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
-    // Dibuja la casa
+    if(animal.bandera == true){
+        let animalWidth = 140; // Ancho de la imagen del animal
+        let habitatWidth = 200; // Ancho de la imagen del hábitat
+        drawCircularImage(lapiz3, animal.animalImageObj, animal.casaX + (habitatWidth / 2) - (animalWidth / 2), (habitatWidth / 2) - (animalWidth / 2) + 20, 70); // Coloca el animal en la mitad del hábitat
+        lapiz3.font = "32px Arial";
+        lapiz3.fillStyle = "white";
+        lapiz3.textAlign = "center";
+        lapiz3.fillText(animal.name, animal.casaX + (habitatWidth / 2) - (animalWidth / 2) + 70, (habitatWidth / 2) - (animalWidth / 2) + 230); // Ajusta la posición según necesites
+      }else{
+        drawCircularImage(lapiz3, animal.animalImageObj, animal.animalX, animal.animalY, 70); // 100 es el radio del círculo
+      }
   }
 }
   
@@ -513,11 +542,20 @@ document.getElementById("flecha").addEventListener("click", function() {
   }
 });
 
-// Función para reproducir el sonido del animal
 function reproducirSonidoAnimal(animal) {
   if (!animal.sonidoReproducido) {
-      var audio = new Audio(animal.animalSound);
-      audio.play();
+      // Crea dos objetos de audio
+      var audio1 = new Audio(animal.animalSound);
+      var audio2 = new Audio(animal.nameSound); 
+
+      setTimeout(function() {
+        audio1.volume = 0.7; // Cambia el volumen según sea necesario
+        audio1.play();
+      }, 1000);
+
+      audio2.volume = 1.0; 
+      audio2.play();
+
       animal.sonidoReproducido = true;
   }
 }

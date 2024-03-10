@@ -198,3 +198,8 @@ canvas{
   flex-direction: column;
   
 }
+
+canvas{
+  border: none;
+}
+
