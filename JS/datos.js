@@ -11,12 +11,14 @@ function empezar() {
       alta();
       const user = JSON.parse(users[indice]);
       document.getElementById("exampleModalLabel").innerHTML = `Bienvenido ${user.userName}`;
+      localStorage.setItem("minutos", 0);
+      localStorage.setItem("segundos",0);
       document.getElementById("modal-p").innerHTML = `Tu score es de 0 pero estoy seguro a que llegaras a los mejores 5`;
     } else {
       // alert("Usuario  existe en el indice:" + indice)
       const user = JSON.parse(users[indice]);
       document.getElementById("exampleModalLabel").innerHTML = `Bienvenido de nuevo ${user.userName} `;
-      document.getElementById("modal-p").innerHTML = `Tu mejor score quedo en ${user.userScore} venga mejoremos`;
+      document.getElementById("modal-p").innerHTML = `Tu mejor score quedo en ${user.userScore} venga mejoremos tu timepo de ` + localStorage.getItem("minutos") + ":" + localStorage.getItem("segundos");
     }
     
     localStorage.setItem("indice", JSON.stringify(indice));
