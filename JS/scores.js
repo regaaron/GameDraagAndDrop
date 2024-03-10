@@ -19,8 +19,8 @@ function llenarTablaDescendente() {
             var row = document.createElement("tr");
             row.innerHTML = `
                 <td>${userData.userName}</td>
-                <td>${userData.tiempo}</td>
                 <td>${userData.userScore}</td>
+                <td>${userData.tiempo}</td>
             `;
             tableBody.appendChild(row);
         });
