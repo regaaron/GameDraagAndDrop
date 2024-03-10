@@ -186,3 +186,15 @@ canvas{
 .card-body p{
   margin-bottom: 30px;
 }
+
+#fin{
+  max-width: 800px;
+  max-height: 600px;
+  background-color: #fbca1f;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  
+}
